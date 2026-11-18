@@ -85,7 +85,7 @@ input,textarea,select{width:100%;font:inherit;padding:9px;border-radius:8px;bord
 <div id="s2" style="display:none"><h3 style="margin:0 0 4px">Notez Patrick</h3><p class="sub">Donnez votre avis sur son travail.</p>
 <div id="fields"></div>
 <label class="small">Votre nom</label><input id="nm" autocomplete="name">
-<label class="small">Lien LinkedIn ou fonction (permet de vérifier l’avis)</label><input id="rl">
+<label class="small">Votre fonction et entreprise (permet de vérifier l’avis)</label><input id="rl" placeholder="Votre fonction et votre entreprise">
 <label class="small">Votre commentaire (5 caractères minimum)</label><textarea id="cm" rows="4"></textarea>
 <p class="small">Votre avis sera envoyé à Patrick par e-mail, puis publié après validation. Vos données ne sont utilisées que pour cet affichage ; vous pouvez demander leur suppression à tout moment à Patrick, par e-mail.</p>
 <div style="display:flex;gap:8px;justify-content:flex-end"><button class="btn" id="go">Envoyer</button></div>
@@ -126,9 +126,9 @@ $("per").onclick=function(){hit("personnes");$("s1").style.display="none";$("s2"
 $("go").onclick=function(){
   if(vals.indexOf(0)>-1){alert("Merci de noter les 4 critères avec les étoiles.");return}
   if(!$("nm").value.trim()){alert("Merci d’indiquer votre nom.");return}
-  if(!$("rl").value.trim()){alert("Merci d’indiquer votre lien LinkedIn ou votre fonction.");return}
+  if(!$("rl").value.trim()){alert("Merci d’indiquer votre fonction et votre entreprise.");return}
   if($("cm").value.trim().length<5){alert("Votre commentaire doit contenir au moins 5 caractères.");return}
-  var b="Profil : personne ayant croisé mon chemin\n"+"Nom : "+$("nm").value+"\nLien/fonction : "+$("rl").value+"\n\n"+C.map(function(c,i){return c+" : "+vals[i]+"/6"}).join("\n")+"\n\nCommentaire :\n"+$("cm").value;
+  var b="Profil : personne ayant croisé mon chemin\n"+"Nom : "+$("nm").value+"\nFonction/entreprise : "+$("rl").value+"\n\n"+C.map(function(c,i){return c+" : "+vals[i]+"/6"}).join("\n")+"\n\nCommentaire :\n"+$("cm").value;
   location.href="mailto:"+MAIL+"?subject="+encodeURIComponent("Nouvel avis sur votre CV")+"&body="+encodeURIComponent(b);
   close();
 };
