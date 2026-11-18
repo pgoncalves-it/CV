@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Patrick Gonçalves Cardoso – Technicien IT confirmé</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--tx:#1b2430;--mu:#5b6676;--ac:#0a66c2;--bd:#dfe3e8;--st:#f5a623;--se:#d5d9df;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12161c;--card:#1b222b;--tx:#e8ecf1;--mu:#9aa6b6;--ac:#5aa9f0;--bd:#2d3744;--st:#f5b84a;--se:#3a4553}}
+:root[data-theme="dark"]{--bg:#12161c;--card:#1b222b;--tx:#e8ecf1;--mu:#9aa6b6;--ac:#5aa9f0;--bd:#2d3744;--st:#f5b84a;--se:#3a4553}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.w{max-width:860px;margin:0 auto;padding:16px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:20px;margin-bottom:16px}
+h1{margin:0;font-size:1.7rem}h2{margin:0 0 10px;font-size:1.1rem;color:var(--ac);text-transform:uppercase;letter-spacing:.04em}
+h3{margin:12px 0 4px;font-size:1rem}.sub{color:var(--mu);margin:2px 0}
+.rate{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:14px;padding:12px 14px;border:1px solid var(--bd);border-radius:12px}
+.big{font-size:2rem;font-weight:700;line-height:1}
+.stars{--p:0;display:inline-block;font-size:1.4rem;letter-spacing:2px;line-height:1;background:linear-gradient(90deg,var(--st) calc(var(--p)*1%),var(--se) 0);-webkit-background-clip:text;background-clip:text;color:transparent}
+.btn{background:var(--ac);color:#fff;border:0;border-radius:10px;padding:10px 16px;font:inherit;cursor:pointer}
+.btn.o{background:transparent;color:var(--ac);border:1px solid var(--ac)}
+a{color:var(--ac)}ul{margin:4px 0 8px;padding-left:20px}
+.g{display:grid;grid-template-columns:1fr 1fr;gap:0 24px}@media(max-width:600px){.g{grid-template-columns:1fr}}
+.crit{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:4px 0}
+.rev{border-top:1px solid var(--bd);padding:12px 0}.rev:first-child{border-top:0}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:16px;z-index:50}
+.ov.on{display:flex}
+.pop{background:var(--card);color:var(--tx);border-radius:16px;max-width:480px;width:100%;max-height:92vh;overflow:auto;padding:20px;border:1px solid var(--bd)}
+.pick{display:inline-flex;gap:2px}.pick button{background:none;border:0;font-size:1.6rem;cursor:pointer;color:var(--se);padding:0 1px;line-height:1}
+.pick button.on{color:var(--st)}
+input,textarea,select{width:100%;font:inherit;padding:9px;border-radius:8px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);margin:4px 0 10px}
+.small{font-size:.8rem;color:var(--mu)}
+#bub{display:none;position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:40;max-width:calc(100vw - 32px);background:var(--ac);color:#fff;text-decoration:none;padding:12px 18px;border-radius:999px;box-shadow:0 4px 16px rgba(0,0,0,.35);font-weight:600;align-items:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+</style>
+</head>
+<body>
+<div class="w">
+<div class="card">
+  <h1>Patrick Gonçalves Cardoso</h1>
+  <p class="sub" style="font-weight:600">Technicien IT confirmé</p>
+  <p class="sub">Saint-Maurice-l’Exil (38) · <span id="ct">coordonnées visibles après avoir choisi « Recruteur »</span></p>
+  <div class="rate">
+    <span class="big" id="avg">–</span>
+    <div><span class="stars" id="st" aria-hidden="true">★★★★★★</span><div class="small" id="cnt"></div></div>
+    <div class="small">Recruteurs : <b id="nr">0</b><br>Personnes ayant croisé mon chemin : <b id="np">0</b><br>Déjà venus : <b id="nd">0</b></div>
+    <a href="#avis">Voir les avis</a>
+    <button class="btn" id="open" style="margin-left:auto">Laisser un avis</button>
+  </div>
+  <p class="small" style="margin:10px 0 0"><b>Message aux recruteurs :</b> cette note est issue des avis de personnes qui ont croisé mon chemin professionnel. Elle reflète leur perception de mes performances, de mes compétences, de mon professionnalisme et de mon savoir-être. Cliquez sur « Voir les avis » pour lire chaque commentaire.</p>
+</div>
+
+<div class="card"><h2>Profil professionnel</h2>
+<p>Technicien IT confirmé, autonome et rigoureux, spécialisé en support N2/N3, systèmes, réseaux, téléphonie et gestion de parc, en environnements industriels et bureautiques. Je souhaite aujourd’hui élargir mon champ d’action et évoluer vers l’intelligence artificielle (IA) ou vers un poste de coordinateur IT, afin de piloter des activités techniques et organisationnelles. Ouvert à la formation, je suis prêt à monter en compétences pour répondre aux exigences du poste.</p></div>
+
+<div class="card"><h2>Compétences techniques</h2><div class="g">
+<div><h3>Systèmes &amp; réseau</h3><ul><li>Active Directory, GPO, DNS, TCP/IP</li><li>Virtualisation VMware ESX</li><li>Pare-feu, VPN, supervision</li><li>Sauvegarde/restauration : Veeam Backup</li></ul></div>
+<div><h3>Parc &amp; support</h3><ul><li>Déploiement/gestion de parc : SCCM, Tanium</li><li>Prise en main à distance : VNC, Bureau à distance</li><li>MDM, téléphonie, gestion sécurisée des accès (Bitwarden)</li><li>Support N2/N3, tickets (SLA strict) : ServiceNow, iTop</li></ul></div></div></div>
+
+<div class="card"><h2>Expérience professionnelle</h2>
+<h3>Technicien IT – Déploiements &amp; support avancé · SPIE (client : Groupe SEB) <span class="sub">2026</span></h3>
+<ul><li>Déploiement de la solution d’impression sécurisée MyQ</li><li>Migration du parc Windows 10 vers Windows 11</li><li>Pilotage du projet de déploiement de la badgeuse Horoquartz</li></ul>
+<h3>Technicien / Assistance technique N2 &amp; N3 · SPIE (client : Groupe SEB) <span class="sub">2020 – 2025</span></h3>
+<ul><li>MCO de 950 postes et plus de 100 smartphones (enrôlement, conformité)</li><li>Mise en service informatique des magasins Home &amp; Cook (zone Sud / Rhône-Alpes)</li><li>Support multi-matériels : postes, imprimantes industrielles, terminaux Zebra, matériel médical Visiolite/AudioLite</li><li>Administration avancée : SCCM, Tanium, VNC, Active Directory, TCP/IP, DNS, Authenticator</li><li>Accès sécurisés et coffres-forts numériques (Bitwarden), supervision MDM</li><li>Sauvegardes et restauration (Veeam Backup), interventions documentées</li></ul>
+<h3>Administrateur réseau &amp; système · Flow Line Technologies <span class="sub">2018 – 2020</span></h3>
+<ul><li>Infrastructure virtualisée (ESX), sauvegardes, pare-feu et VPN</li><li>Traitement des incidents, administration SCCM / GPO</li><li>Participation aux projets d’évolution de l’infrastructure</li></ul>
+<h3>Technicien informatique · SPIE (client : Groupe Volvo) <span class="sub">2015 – 2018</span></h3>
+<ul><li>Installation de matériel local et réseau</li><li>Gestion des tickets dans le respect d’un SLA strict</li><li>Projet Base Access FLEET (gestion des accès et traçabilité)</li></ul></div>
+
+<div class="card"><h2>Diplômes</h2><ul>
+<li>2018 – 2020 · Cycle Expert en Systèmes d’Information – Isitech Lyon Gerland</li>
+<li>2017 – 2018 · Licence Responsable de Projets Informatiques (RNCP niveau II) – Isitech Lyon Gerland</li>
+<li>2015 – 2017 · BTS Technicien d’Infrastructure Informatique &amp; Sécurité (RNCP niveau III) – Isitech Lyon Gerland</li></ul></div>
+
+<div class="card"><h2>Habilitations, langues &amp; atouts</h2>
+<p><b>Habilitation :</b> H0B0<br><b>Langues :</b> français (natif), portugais (bilingue), anglais (technique)<br><b>Atouts :</b> polyvalence &amp; autonomie, rigueur &amp; documentation, adaptation multi-sites</p></div>
+
+<div class="card" id="avis"><h2>Avis et recommandations</h2>
+<div id="crits"></div><div id="list"></div></div>
+</div>
+
+<a id="bub" href="#" aria-label="Envoyer un e-mail à Patrick"></a>
+<div class="ov" id="ov" role="dialog" aria-modal="true" aria-labelledby="pt"><div class="pop">
+<h2 id="pt" style="text-transform:none;font-size:1.2rem">Vous êtes ?</h2>
+<div id="s1"><button class="btn" id="rec" style="width:100%;margin:8px 0">Recruteur · <span id="cr">0</span></button><button class="btn o" id="per" style="width:100%">Une personne qui a croisé mon chemin professionnel · <span id="cp">0</span></button><button class="btn o" id="dej" style="width:100%;margin-top:8px">Je suis déjà venu(e) · <span id="cd">0</span></button></div>
+<div id="s2" style="display:none"><h3 style="margin:0 0 4px">Notez Patrick</h3><p class="sub">Donnez votre avis sur son travail.</p>
+<div id="fields"></div>
+<label class="small">Votre nom</label><input id="nm" autocomplete="name">
+<label class="small">Lien LinkedIn ou fonction (permet de vérifier l’avis)</label><input id="rl">
+<label class="small">Votre commentaire (5 caractères minimum)</label><textarea id="cm" rows="4"></textarea>
+<p class="small">Votre avis sera envoyé à Patrick par e-mail, puis publié après validation. Vos données ne sont utilisées que pour cet affichage ; vous pouvez demander leur suppression à tout moment à Patrick, par e-mail.</p>
+<div style="display:flex;gap:8px;justify-content:flex-end"><button class="btn" id="go">Envoyer</button></div>
+</div>
+</div></div>
+
+<script>
+// Avis validés et publiés : { nom, role, date, notes:[perf,comp,pro,etre], commentaire }
+var REVIEWS=[];
+var C=["Performances au travail","Compétences","Professionnalisme","Savoir-être"],MAX=6;
+var $=function(i){return document.getElementById(i)};
+function stars(el,v){el.style.setProperty("--p",(v/MAX*100).toFixed(1))}
+function esc(s){var d=document.createElement("div");d.textContent=s;return d.innerHTML}
+function render(){
+  var n=REVIEWS.length;
+  if(!n){$("avg").textContent="–";stars($("st"),0);$("cnt").textContent="Aucun avis pour le moment";
+    $("list").innerHTML='<p class="sub">Soyez le premier à laisser un avis.</p>';return}
+  var sums=[0,0,0,0];REVIEWS.forEach(function(r){r.notes.forEach(function(x,i){sums[i]+=x})});
+  var m=sums.map(function(s){return s/n}),a=(m[0]+m[1]+m[2]+m[3])/4;
+  $("avg").textContent=a.toFixed(1).replace(".",",")+" / "+MAX;stars($("st"),a);
+  $("cnt").textContent=n+(n>1?" votants":" votant");
+  $("crits").innerHTML=C.map(function(c,i){return '<div class="crit"><span>'+c+'</span><span><b>'+m[i].toFixed(1).replace(".",",")+'</b> <span class="stars" style="font-size:1.1rem;--p:'+(m[i]/MAX*100)+'">★★★★★★</span></span></div>'}).join("");
+  $("list").innerHTML=REVIEWS.map(function(r){var avg=r.notes.reduce(function(x,y){return x+y},0)/4;
+    return '<div class="rev"><div><b>'+esc(r.nom)+'</b> <span class="sub">'+esc(r.role||"")+' · '+esc(r.date||"")+'</span></div><span class="stars" style="font-size:1.1rem;--p:'+(avg/MAX*100)+'">★★★★★★</span> <span class="small">'+avg.toFixed(1).replace(".",",")+'/6</span><p style="margin:6px 0 0">'+esc(r.commentaire)+'</p></div>'}).join("");
+}
+var vals=[0,0,0,0];
+function build(){
+  $("fields").innerHTML=C.map(function(c,i){var b="";for(var k=1;k<=MAX;k++)b+='<button type="button" data-i="'+i+'" data-k="'+k+'" aria-label="'+k+' sur 6">★</button>';
+    return '<div class="crit"><span>'+c+'</span><span class="pick" id="p'+i+'">'+b+'</span></div>'}).join("");
+  $("fields").onclick=function(e){var t=e.target;if(!t.dataset.k)return;var i=+t.dataset.i,k=+t.dataset.k;vals[i]=k;
+    [].forEach.call($("p"+i).children,function(b,j){b.classList.toggle("on",j<k)})};
+}
+function open(){$("s1").style.display="";$("s2").style.display="none";$("ov").classList.add("on")}function close(){$("ov").classList.remove("on")}
+$("open").onclick=open;$("dej").onclick=function(){hit("deja");close()};
+$("rec").onclick=function(){hit("recruteurs");try{localStorage.setItem("rec","1")}catch(e){}showCt();close();$("avis").scrollIntoView({behavior:"smooth"})};
+$("per").onclick=function(){hit("personnes");$("s1").style.display="none";$("s2").style.display=""};
+
+$("go").onclick=function(){
+  if(vals.indexOf(0)>-1){alert("Merci de noter les 4 critères avec les étoiles.");return}
+  if(!$("nm").value.trim()){alert("Merci d’indiquer votre nom.");return}
+  if(!$("rl").value.trim()){alert("Merci d’indiquer votre lien LinkedIn ou votre fonction.");return}
+  if($("cm").value.trim().length<5){alert("Votre commentaire doit contenir au moins 5 caractères.");return}
+  var b="Profil : personne ayant croisé mon chemin\n"+"Nom : "+$("nm").value+"\nLien/fonction : "+$("rl").value+"\n\n"+C.map(function(c,i){return c+" : "+vals[i]+"/6"}).join("\n")+"\n\nCommentaire :\n"+$("cm").value;
+  location.href="mailto:"+MAIL+"?subject="+encodeURIComponent("Nouvel avis sur votre CV")+"&body="+encodeURIComponent(b);
+  close();
+};
+build();render();
+var MAIL="patrickgoncalves38200"+"@"+"gmail.com";
+function showCt(){var t="06 98 11 97 57";$("ct").innerHTML='<a href="tel:'+t.replace(/ /g,"")+'">'+t+'</a> · <a href="mailto:'+MAIL+'">'+MAIL+'</a>';var b=$("bub");b.href="mailto:"+MAIL;b.textContent="\u2709 "+MAIL;b.style.display="flex"}
+var DB=""; // adresse Firebase, ex : https://monprojet-default-rtdb.europe-west1.firebasedatabase.app
+function cnt(k){if(!DB)return;fetch(DB+"/"+k+".json?shallow=true").then(function(r){return r.json()}).then(function(d){var n=d?Object.keys(d).length:0;({recruteurs:["nr","cr"],personnes:["np","cp"],deja:["nd","cd"]})[k].forEach(function(i){$(i).textContent=n})}).catch(function(){})}
+function hit(k){var f=k==="deja"?"hitd":"hit",done=false;try{done=localStorage.getItem(f)==="1";localStorage.setItem(f,"1")}catch(e){}
+  if(DB&&!done)fetch(DB+"/"+k+".json",{method:"POST",body:JSON.stringify({t:{".sv":"timestamp"}})}).then(function(){cnt(k)}).catch(function(){})}
+var ans=false;try{ans=localStorage.getItem("hit")==="1"}catch(e){}
+open();
+try{if(localStorage.getItem("rec")==="1")showCt()}catch(e){}
+cnt("recruteurs");cnt("personnes");cnt("deja");
+</script>
+</body>
+</html>
