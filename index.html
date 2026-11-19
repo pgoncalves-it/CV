@@ -39,7 +39,10 @@ a{color:var(--ac)}ul{margin:4px 0 8px;padding-left:20px}
 .pick button.on{color:var(--st)}
 input,textarea,select{width:100%;font:inherit;padding:9px;border-radius:8px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);margin:4px 0 10px}
 .small{font-size:.8rem;color:var(--mu)}
-#bub{display:none;position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:40;max-width:calc(100vw - 32px);background:var(--ac);color:#fff;text-decoration:none;padding:12px 18px;border-radius:999px;box-shadow:0 4px 16px rgba(0,0,0,.35);font-weight:600;align-items:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#bub{display:none;position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:40;max-width:calc(100vw - 32px);background:#1e9e5a;color:#fff;text-decoration:none;padding:12px 18px;border-radius:999px;box-shadow:0 4px 16px rgba(0,0,0,.35);font-weight:600;align-items:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+input,textarea{-webkit-user-select:text;user-select:text}
+img,a{-webkit-user-drag:none}
 </style>
 </head>
 <body>
@@ -53,7 +56,7 @@ input,textarea,select{width:100%;font:inherit;padding:9px;border-radius:8px;bord
     <div><span class="stars" id="st" aria-hidden="true">★★★★★★</span><div class="small" id="cnt"></div></div>
     <div class="small">Recruteurs : <b id="nr">0</b><br>Personnes ayant croisé mon chemin : <b id="np">0</b><br>Déjà venus : <b id="nd">0</b></div>
     <a href="#avis">Voir les avis</a>
-    <button class="btn" id="open" style="margin-left:auto">Laisser un avis</button>
+    <button class="btn o" id="shr" type="button" style="margin-left:auto">Partager</button><button class="btn" id="open">Laisser un avis</button>
   </div>
   <p class="small" style="margin:10px 0 0"><b>Message aux recruteurs :</b> cette note est issue des avis de personnes qui ont croisé mon chemin professionnel. Elle reflète leur perception de mes performances, de mes compétences, de mon professionnalisme et de mon savoir-être. Cliquez sur « Voir les avis » pour lire chaque commentaire.</p>
 </div>
@@ -87,16 +90,22 @@ input,textarea,select{width:100%;font:inherit;padding:9px;border-radius:8px;bord
 <div id="crits"></div><div id="list"></div></div>
 </div>
 
+<div id="side" style="position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;align-items:flex-end;gap:8px">
+<button id="shr2" type="button" class="btn" style="display:block;border-radius:12px 0 0 12px;padding:12px 10px;box-shadow:0 4px 16px rgba(0,0,0,.35);font-size:.85rem;font-weight:600">↗ Partager</button>
+<button id="qt2" type="button" class="btn" style="border-radius:12px 0 0 12px;background:#5b6676;padding:12px 10px;box-shadow:0 4px 16px rgba(0,0,0,.35);font-size:.85rem;font-weight:600">✕ Quitter</button>
+</div>
 <a id="bub" href="#" aria-label="Envoyer un e-mail à Patrick"></a>
 <div class="ov" id="ov" role="dialog" aria-modal="true" aria-labelledby="pt"><div class="pop">
 <h2 id="pt" style="text-transform:none;font-size:1.2rem">Vous êtes ?</h2>
-<div id="s1"><button class="btn" id="rec" style="width:100%;margin:8px 0">Recruteur · <span id="cr">0</span></button><button class="btn o" id="per" style="width:100%">Une personne qui a croisé mon chemin professionnel · <span id="cp">0</span></button><button class="btn o" id="dej" style="width:100%;margin-top:8px">Je suis déjà venu(e) · <span id="cd">0</span></button></div>
+<div id="s0"><p class="sub">Pour déposer un avis, connectez-vous. Cela confirme votre identité et vous permettra de modifier ou supprimer votre avis plus tard.</p><button class="btn" id="gg" type="button" style="display:none;width:100%;margin:8px 0">Se connecter</button><div id="prov" style="margin:8px 0 6px"><button class="btn o pv" type="button" data-p="google.com" style="width:100%;margin-bottom:6px">Google</button><button class="btn o pv" type="button" data-p="microsoft.com" style="width:100%;margin-bottom:6px">Microsoft</button><button class="btn o pv" type="button" data-p="yahoo.com" style="width:100%;margin-bottom:6px">Yahoo</button><button class="btn o pv" type="button" data-p="linkedin" style="width:100%;margin-bottom:6px">LinkedIn (bientôt)</button><button class="btn o pv" type="button" data-p="indeed" style="width:100%">Indeed (bientôt)</button></div><button class="btn o" id="go0" type="button" style="display:none;width:100%">Continuer sans compte</button><button class="btn o" id="bk0" type="button" style="border:0;width:100%;margin-top:6px">Retour</button><button class="btn o" id="qt0" type="button" style="border:0;width:100%;margin-top:6px">Quitter</button><p class="small">Pour toute question sur un avis, contactez directement Patrick par e-mail.</p></div>
+<div id="s1" style="display:none"><p style="margin:0 0 10px;padding:10px 12px;border:1px solid var(--bd);border-left:4px solid var(--ac);border-radius:8px;font-size:.9rem">Cet espace est un lieu professionnel : seuls les avis professionnels sont admis.</p><button class="btn" id="rec" style="width:100%;margin:8px 0">Recruteur · <span id="cr">0</span></button><button class="btn o" id="per" style="width:100%">Une personne qui a croisé mon chemin professionnel · <span id="cp">0</span></button><button class="btn o" id="dej" style="width:100%;margin-top:8px">Je suis déjà venu(e) · <span id="cd">0</span></button><button class="btn o" id="qt" type="button" style="border:0;width:100%;margin-top:4px">Quitter</button></div>
 <div id="s2" style="display:none"><h3 style="margin:0 0 4px">Notez Patrick</h3><p class="sub">Donnez votre avis sur son travail.</p>
 <div id="fields"></div>
 <label class="small">Votre nom</label><input id="nm" autocomplete="name">
 <label class="small">Votre fonction et entreprise (permet de vérifier l’avis)</label><input id="rl" placeholder="Votre fonction et votre entreprise">
 <label class="small">Votre commentaire (5 caractères minimum)</label><textarea id="cm" rows="4"></textarea>
-<p class="small">Votre avis sera envoyé à Patrick par e-mail, puis publié après validation. Vos données ne sont utilisées que pour cet affichage ; vous pouvez demander leur suppression à tout moment à Patrick, par e-mail.</p>
+<p class="small">Votre avis sera publié en bas de cette page, dans la section « Avis et recommandations ». Vos données ne sont utilisées que pour cet affichage ; vous pouvez demander leur suppression à tout moment à Patrick, par e-mail.</p>
+<p id="err" style="color:#e5534b;font-weight:600;margin:0 0 8px;display:none"></p>
 <div style="display:flex;gap:8px;justify-content:flex-end"><button class="btn" id="go">Envoyer</button></div>
 </div>
 </div></div>
@@ -118,7 +127,7 @@ function render(){
   $("cnt").textContent=n+(n>1?" votants":" votant");
   $("crits").innerHTML=C.map(function(c,i){return '<div class="crit"><span>'+c+'</span><span><b>'+m[i].toFixed(1).replace(".",",")+'</b> <span class="stars" style="font-size:1.1rem;--p:'+(m[i]/MAX*100)+'">★★★★★★</span></span></div>'}).join("");
   $("list").innerHTML=REVIEWS.map(function(r){var avg=r.notes.reduce(function(x,y){return x+y},0)/4;
-    return '<div class="rev"><div><b>'+esc(r.nom)+'</b> <span class="sub">'+esc(r.role||"")+' · '+esc(r.date||"")+'</span></div><span class="stars" style="font-size:1.1rem;--p:'+(avg/MAX*100)+'">★★★★★★</span> <span class="small">'+avg.toFixed(1).replace(".",",")+'/6</span><p style="margin:6px 0 0">'+esc(r.commentaire)+'</p></div>'}).join("");
+    return '<div class="rev"><div><b>'+esc(r.nom)+'</b> <span class="sub">'+esc(r.role||"")+' · '+esc(r.date||"")+(r.compte?" · "+esc(r.compte):"")+'</span></div><span class="stars" style="font-size:1.1rem;--p:'+(avg/MAX*100)+'">★★★★★★</span> <span class="small">'+avg.toFixed(1).replace(".",",")+'/6</span><p style="margin:6px 0 0">'+esc(r.commentaire)+'</p>'+own(r)+'</div>'}).join("");
 }
 var vals=[0,0,0,0];
 function build(){
@@ -127,10 +136,10 @@ function build(){
   $("fields").onclick=function(e){var t=e.target;if(!t.dataset.k)return;var i=+t.dataset.i,k=+t.dataset.k;vals[i]=k;
     [].forEach.call($("p"+i).children,function(b,j){b.classList.toggle("on",j<k)})};
 }
-function open(){$("s1").style.display="";$("s2").style.display="none";$("ov").classList.add("on")}function close(){$("ov").classList.remove("on")}
+function open(){show("s1");$("ov").classList.add("on")}function close(){$("ov").classList.remove("on")}
 $("open").onclick=open;$("dej").onclick=function(){hit("deja");close()};
 $("rec").onclick=function(){hit("recruteurs");try{localStorage.setItem("rec","1")}catch(e){}showCt();close();$("avis").scrollIntoView({behavior:"smooth"})};
-$("per").onclick=function(){hit("personnes");$("s1").style.display="none";$("s2").style.display=""};
+$("per").onclick=function(){hit("personnes");if(acc==="compte")show("s2");else if(!FBCFG){acc="anon";show("s2")}else show("s0")};
 
 $("go").onclick=function(){
   if(vals.indexOf(0)>-1){alert("Merci de noter les 4 critères avec les étoiles.");return}
@@ -138,20 +147,80 @@ $("go").onclick=function(){
   if(!$("rl").value.trim()){alert("Merci d’indiquer votre fonction et votre entreprise.");return}
   if($("cm").value.trim().length<5){alert("Votre commentaire doit contenir au moins 5 caractères.");return}
   var b="Profil : personne ayant croisé mon chemin\n"+"Nom : "+$("nm").value+"\nFonction/entreprise : "+$("rl").value+"\n\n"+C.map(function(c,i){return c+" : "+vals[i]+"/6"}).join("\n")+"\n\nCommentaire :\n"+$("cm").value;
-  location.href="mailto:"+MAIL+"?subject="+encodeURIComponent("Nouvel avis sur votre CV")+"&body="+encodeURIComponent(b);
+  var rv={nom:$("nm").value.trim(),role:$("rl").value.trim(),date:new Date().toLocaleDateString("fr-FR"),notes:vals.slice(),commentaire:$("cm").value.trim(),t:Date.now(),compte:acc==="compte"?"Compte vérifié":"Sans compte"};
+  postAvis(rv).then(function(){loadAvis();toast("Merci ! Votre avis est publié.")}).catch(function(){toast("Désolé, l’envoi a échoué. Réessayez plus tard.")});
   close();
 };
 build();render();
 var MAIL="patrickgoncalves38200"+"@"+"gmail.com";
-function showCt(){var t="06 98 11 97 57";$("ct").innerHTML='<a href="tel:'+t.replace(/ /g,"")+'">'+t+'</a> · <a href="mailto:'+MAIL+'">'+MAIL+'</a>';var b=$("bub");b.href="mailto:"+MAIL;b.textContent="\u2709 "+MAIL;b.style.display="flex"}
-var DB=""; // adresse Firebase, ex : https://monprojet-default-rtdb.europe-west1.firebasedatabase.app
-function cnt(k){if(!DB)return;fetch(DB+"/"+k+".json?shallow=true").then(function(r){return r.json()}).then(function(d){var n=d?Object.keys(d).length:0;({recruteurs:["nr","cr"],personnes:["np","cp"],deja:["nd","cd"]})[k].forEach(function(i){$(i).textContent=n})}).catch(function(){})}
+function mailMenu(e){
+  if(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent))return;
+  if(e)e.preventDefault();
+  var m=$("mm");if(m){m.remove();return}
+  var su=encodeURIComponent("Contact depuis votre CV"),to=encodeURIComponent(MAIL);
+  var L=[["Gmail","https://mail.google.com/mail/?view=cm&fs=1&to="+to+"&su="+su],["Outlook / Hotmail","https://outlook.live.com/mail/0/deeplink/compose?to="+to+"&subject="+su],["Yahoo Mail","https://compose.mail.yahoo.com/?to="+to+"&subject="+su],["Application de messagerie du PC","mailto:"+MAIL+"?subject="+su]];
+  m=document.createElement("div");m.id="mm";
+  m.style.cssText="position:fixed;right:16px;bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:45;background:var(--card);color:var(--tx);border:1px solid var(--bd);border-radius:14px;padding:12px;box-shadow:0 4px 16px rgba(0,0,0,.35);display:flex;flex-direction:column;gap:8px;min-width:240px;max-width:calc(100vw - 32px)";
+  m.innerHTML='<div style="display:flex;justify-content:space-between;align-items:center"><b>Écrire à Patrick avec :</b><button type="button" id="mmx" aria-label="Fermer" style="background:none;border:0;color:inherit;font-size:1.2rem;cursor:pointer">✕</button></div>'+
+    L.map(function(x){var web=x[1].indexOf("http")===0;return '<a class="btn o" style="text-align:center;text-decoration:none"'+(web?' target="_blank" rel="noopener"':'')+' href="'+x[1]+'">'+x[0]+'</a>'}).join("")+
+    '<button type="button" class="btn o" id="mmc">Copier l’adresse e-mail</button>';
+  document.body.appendChild(m);
+  $("mmx").onclick=function(){m.remove()};
+  $("mmc").onclick=function(){try{navigator.clipboard.writeText(MAIL).then(function(){toast("Adresse copiée : "+MAIL)},function(){toast("Écrivez à : "+MAIL)})}catch(x){toast("Écrivez à : "+MAIL)}m.remove()};
+}
+function showCt(){var t="06 98 11 97 57";$("ct").innerHTML='<a href="tel:'+t.replace(/ /g,"")+'">'+t+'</a> · <a href="mailto:'+MAIL+'" target="_top">'+MAIL+'</a>';var b=$("bub");b.href="mailto:"+MAIL+"?subject="+encodeURIComponent("Contact depuis votre CV");b.target="_top";b.textContent="\u2709 Envoyer un email";b.style.display="flex";b.onclick=mailMenu;var ml=$("ct").querySelector('a[href^="mailto:"]');if(ml)ml.onclick=mailMenu}
+var DBS=["https://cv-patrick-default-rtdb.europe-west1.firebasedatabase.app","https://cv-patrick-default-rtdb.firebaseio.com"];
+function dbf(p,o,i){i=i||0;if(i>=DBS.length)return Promise.reject();return fetch(DBS[i]+p,o).then(function(r){if(!r.ok)throw 0;return r}).catch(function(){return dbf(p,o,i+1)})}
+var DB=1;
+function alert(m){var e=$("err");e.textContent=m;e.style.display="";clearTimeout(window.__et);window.__et=setTimeout(function(){e.style.display="none"},6000)}
+function toast(m){var t=document.createElement("div");t.textContent=m;t.style.cssText="position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--ac);color:#fff;padding:12px 18px;border-radius:12px;z-index:60;font-weight:600;max-width:90vw";document.body.appendChild(t);setTimeout(function(){t.remove()},4000)}
+var acc=null,FBCFG=null;
+function show(id){["s0","s1","s2"].forEach(function(i){$(i).style.display=i===id?"":"none"});$("pt").textContent={s0:"Bienvenue",s1:"Vous êtes ?",s2:"Notez Patrick"}[id];$("err").style.display="none"}
+function quit(){if(history.length>1)history.back();else location.href="https://www.linkedin.com/"}
+function share(){var u="https://pgoncalves-it.github.io/CV/",t="CV de Patrick Gonçalves Cardoso, technicien IT";if(navigator.share){navigator.share({title:t,url:u}).catch(function(){})}else{try{navigator.clipboard.writeText(u).then(function(){toast("Lien copié : collez-le dans un message.")})}catch(e){location.href="mailto:?subject="+encodeURIComponent(t)+"&body="+encodeURIComponent(u)}}}
+function loginGoogle(){if(!FBCFG||!window.firebase){toast("La connexion Google sera bientôt disponible. Continuez sans compte pour l’instant.");return}
+ if(!firebase.apps.length)firebase.initializeApp(FBCFG);
+ firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(function(r){acc="google";$("nm").value=r.user.displayName||"";show("s1")}).catch(function(){toast("Connexion annulée.")})}
+$("go0").onclick=function(){acc="anon";show("s1")};
+$("qt").onclick=quit;$("qt0").onclick=quit;$("qt2").onclick=quit;$("shr").onclick=share;$("shr2").onclick=share;function ld(u){return new Promise(function(ok,ko){var e=document.createElement("script");e.src=u;e.onload=ok;e.onerror=ko;document.head.appendChild(e)})}
+function sdk(){if(window.firebase&&firebase.auth)return Promise.resolve();var b="https://www.gstatic.com/firebasejs/10.12.2/";return ld(b+"firebase-app-compat.js").then(function(){return ld(b+"firebase-auth-compat.js")})}
+function loginP(p){if(p==="linkedin"||p==="indeed"){toast("Cette connexion n’est pas disponible pour le moment.");return}
+ if(!FBCFG){toast("La connexion sera bientôt disponible. Continuez sans compte pour l’instant.");return}
+ sdk().then(function(){if(!firebase.apps.length)firebase.initializeApp(FBCFG);
+  var pr=p==="google.com"?new firebase.auth.GoogleAuthProvider():new firebase.auth.OAuthProvider(p);
+  return firebase.auth().signInWithPopup(pr)}).then(function(r){acc="compte";window.__u=r.user;$("nm").value=r.user.displayName||"";show("s2");loadAvis()}).catch(function(e){toast(e&&e.code==="auth/operation-not-allowed"?"Ce mode de connexion n’est pas encore activé.":"Connexion annulée.")})}
+$("gg").onclick=function(){var p=$("prov");p.style.display=p.style.display==="none"?"":"none"};
+[].forEach.call(document.querySelectorAll(".pv"),function(b){b.onclick=function(){loginP(b.dataset.p)}});
+$("bk0").onclick=function(){show("s1")};
+function tok(){return firebase.auth().currentUser.getIdToken()}
+function notif(){try{fetch("https://formsubmit.co/ajax/"+MAIL,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({_subject:"Un avis a été ajouté sur votre CV",message:"Un nouvel avis vient d’être ajouté sur votre CV en ligne."})}).catch(function(){})}catch(e){}}
+function postAvis(rv){return postAvis0(rv).then(function(x){notif();return x})}
+function postAvis0(rv){var o={method:"POST",body:JSON.stringify(rv)};if(acc==="compte"&&window.__u){rv.uid=window.__u.uid;o.body=JSON.stringify(rv);return tok().then(function(t){return dbf("/avis.json?auth="+t,o)})}return dbf("/avis.json",o)}
+function own(r){return(window.__u&&r.uid&&r.uid===window.__u.uid&&r._k)?'<p style="margin:6px 0 0"><button class="btn o" type="button" data-k="'+r._k+'" data-a="e">Modifier mon commentaire</button> <button class="btn o" type="button" data-k="'+r._k+'" data-a="d">Supprimer mon avis</button></p>':""}
+$("list").onclick=function(e){var b=e.target,k=b.dataset&&b.dataset.k;if(!k)return;var r=REVIEWS.filter(function(x){return x._k===k})[0];
+ if(b.dataset.a==="d"){if(!confirm("Supprimer définitivement votre avis ?"))return;tok().then(function(t){return dbf("/avis/"+k+".json?auth="+t,{method:"DELETE"})}).then(function(){toast("Votre avis est supprimé.");loadAvis()}).catch(function(){toast("Suppression impossible.")})}
+ else{var c=prompt("Modifier votre commentaire :",r?r.commentaire:"");if(c===null)return;c=c.trim();if(c.length<5){toast("Le commentaire doit contenir au moins 5 caractères.");return}
+  tok().then(function(t){return dbf("/avis/"+k+".json?auth="+t,{method:"PATCH",body:JSON.stringify({commentaire:c})})}).then(function(){toast("Votre avis est modifié.");loadAvis()}).catch(function(){toast("Modification impossible.")})}};
+if(FBCFG)sdk().then(function(){if(!firebase.apps.length)firebase.initializeApp(FBCFG);firebase.auth().onAuthStateChanged(function(u){if(u){window.__u=u;acc="compte";$("nm").value=u.displayName||"";if($("ov").classList.contains("on")&&$("s0").style.display==="")show("s2");loadAvis()}})});
+function loadAvis(){dbf("/avis.json").then(function(r){return r.json()}).then(function(d){REVIEWS=d?Object.keys(d).map(function(k){var v=d[k];if(v&&typeof v==="object")v._k=k;return v}).filter(function(x){return x&&x.notes&&x.notes.length===4}).sort(function(a,b){return (b.t||0)-(a.t||0)}):[];render()}).catch(function(){})}
+function cnt(k){if(!DB)return;dbf("/"+k+".json?shallow=true").then(function(r){return r.json()}).then(function(d){var n=d?Object.keys(d).length:0;({recruteurs:["nr","cr"],personnes:["np","cp"],deja:["nd","cd"]})[k].forEach(function(i){$(i).textContent=n})}).catch(function(){})}
 function hit(k){var f=k==="deja"?"hitd":"hit",done=false;try{done=localStorage.getItem(f)==="1";localStorage.setItem(f,"1")}catch(e){}
-  if(DB&&!done)fetch(DB+"/"+k+".json",{method:"POST",body:JSON.stringify({t:{".sv":"timestamp"}})}).then(function(){cnt(k)}).catch(function(){})}
+  if(DB&&!done)dbf("/"+k+".json",{method:"POST",body:JSON.stringify({t:{".sv":"timestamp"}})}).then(function(){cnt(k)}).catch(function(){})}
 var ans=false;try{ans=localStorage.getItem("hit")==="1"}catch(e){}
 open();
 try{if(localStorage.getItem("rec")==="1")showCt()}catch(e){}
-cnt("recruteurs");cnt("personnes");cnt("deja");
+cnt("recruteurs");cnt("personnes");cnt("deja");loadAvis();
+
+// Protection anti-copie : texte non sélectionnable ni copiable (sauf champs de saisie)
+(function(){
+  function inField(e){var t=e.target;if(t&&t.nodeType===3)t=t.parentNode;return !!(t&&t.closest&&t.closest("input,textarea"))}
+  ["copy","cut","contextmenu","dragstart","selectstart"].forEach(function(ev){
+    document.addEventListener(ev,function(e){if(!inField(e))e.preventDefault()})
+  });
+  document.addEventListener("keydown",function(e){
+    if((e.ctrlKey||e.metaKey)&&/^[acxs]$/i.test(e.key)&&!inField(e))e.preventDefault()
+  });
+})();
 </script>
 </body>
 </html>
