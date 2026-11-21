@@ -54,7 +54,7 @@ img,a{-webkit-user-drag:none}
   <div class="rate">
     <span class="big" id="avg">–</span>
     <div><span class="stars" id="st" aria-hidden="true">★★★★★★</span><div class="small" id="cnt"></div></div>
-    <div class="small">Recruteurs : <b id="nr">0</b><br>Personnes ayant croisé mon chemin : <b id="np">0</b><br>Déjà venus : <b id="nd">0</b></div>
+    <div class="small">Recruteurs : <b id="nr">0</b><br>Connaissent Patrick professionnellement : <b id="np">0</b><br>Déjà venus : <b id="nd">0</b></div>
     <a href="#avis">Voir les avis</a>
     <button class="btn o" id="shr" type="button" style="margin-left:auto">Partager</button><button class="btn" id="open">Laisser un avis</button>
   </div>
@@ -97,8 +97,8 @@ img,a{-webkit-user-drag:none}
 <a id="bub" href="#" aria-label="Envoyer un e-mail à Patrick"></a>
 <div class="ov" id="ov" role="dialog" aria-modal="true" aria-labelledby="pt"><div class="pop">
 <h2 id="pt" style="text-transform:none;font-size:1.2rem">Vous êtes ?</h2>
-<div id="s0"><p class="sub">Pour déposer un avis, connectez-vous. Cela confirme votre identité et vous permettra de modifier ou supprimer votre avis plus tard.</p><button class="btn" id="gg" type="button" style="display:none;width:100%;margin:8px 0">Se connecter</button><div id="prov" style="margin:8px 0 6px"><button class="btn o pv" type="button" data-p="google.com" style="width:100%;margin-bottom:6px">Google</button><button class="btn o pv" type="button" data-p="microsoft.com" style="width:100%;margin-bottom:6px">Microsoft</button><button class="btn o pv" type="button" data-p="yahoo.com" style="width:100%;margin-bottom:6px">Yahoo</button><button class="btn o pv" type="button" data-p="linkedin" style="width:100%;margin-bottom:6px">LinkedIn (bientôt)</button><button class="btn o pv" type="button" data-p="indeed" style="width:100%">Indeed (bientôt)</button></div><button class="btn o" id="go0" type="button" style="display:none;width:100%">Continuer sans compte</button><button class="btn o" id="bk0" type="button" style="border:0;width:100%;margin-top:6px">Retour</button><button class="btn o" id="qt0" type="button" style="border:0;width:100%;margin-top:6px">Quitter</button><p class="small">Pour toute question sur un avis, contactez directement Patrick par e-mail.</p></div>
-<div id="s1" style="display:none"><p style="margin:0 0 10px;padding:10px 12px;border:1px solid var(--bd);border-left:4px solid var(--ac);border-radius:8px;font-size:.9rem">Cet espace est un lieu professionnel : seuls les avis professionnels sont admis.</p><button class="btn" id="rec" style="width:100%;margin:8px 0">Recruteur · <span id="cr">0</span></button><button class="btn o" id="per" style="width:100%">Une personne qui a croisé mon chemin professionnel · <span id="cp">0</span></button><button class="btn o" id="dej" style="width:100%;margin-top:8px">Je suis déjà venu(e) · <span id="cd">0</span></button><button class="btn o" id="qt" type="button" style="border:0;width:100%;margin-top:4px">Quitter</button></div>
+<div id="s0"><p class="sub">Pour déposer un avis, connectez-vous. Cela confirme votre identité et vous permettra de modifier ou supprimer votre avis plus tard.</p><button class="btn" id="gg" type="button" style="display:none;width:100%;margin:8px 0">Se connecter</button><div id="prov" style="margin:8px 0 6px"><button class="btn o pv" type="button" data-p="google.com" style="width:100%;margin-bottom:6px">Google</button><button class="btn o pv" type="button" data-p="microsoft.com" style="width:100%;margin-bottom:6px">Microsoft</button><button class="btn o pv" type="button" data-p="yahoo.com" style="width:100%;margin-bottom:6px">Yahoo</button><button class="btn o pv" type="button" data-p="linkedin" style="width:100%;margin-bottom:6px">LinkedIn (bientôt)</button><button class="btn o pv" type="button" data-p="indeed" style="width:100%">Indeed (bientôt)</button></div><button class="btn o" id="go0" type="button" style="display:none;width:100%">Continuer sans compte</button><button class="btn o" id="bk0" type="button" style="border:0;width:100%;margin-top:6px">Retour à l’accueil</button><button class="btn o" id="qt0" type="button" style="border:0;width:100%;margin-top:6px">Quitter</button><p class="small">Pour toute question sur un avis, contactez directement Patrick par e-mail.</p></div>
+<div id="s1" style="display:none"><p style="margin:0 0 10px;padding:10px 12px;border:1px solid var(--bd);border-left:4px solid var(--ac);border-radius:8px;font-size:.9rem">Cet espace est un lieu professionnel : seuls les avis professionnels sont admis.</p><button class="btn" id="rec" style="width:100%;margin:8px 0">Recruteur · <span id="cr">0</span></button><button class="btn o" id="per" style="width:100%">Je connais Patrick professionnellement · <span id="cp">0</span></button><button class="btn o" id="dej" style="width:100%;margin-top:8px">Je suis déjà venu(e) · <span id="cd">0</span></button><button class="btn o" id="ac" type="button" style="width:100%;margin-top:8px">Retour à l’accueil</button><button class="btn o" id="qt" type="button" style="border:0;width:100%;margin-top:4px">Quitter</button></div>
 <div id="s2" style="display:none"><h3 style="margin:0 0 4px">Notez Patrick</h3><p class="sub">Donnez votre avis sur son travail.</p>
 <div id="fields"></div>
 <label class="small">Votre nom</label><input id="nm" autocomplete="name">
@@ -106,7 +106,7 @@ img,a{-webkit-user-drag:none}
 <label class="small">Votre commentaire (5 caractères minimum)</label><textarea id="cm" rows="4"></textarea>
 <p class="small">Votre avis sera publié en bas de cette page, dans la section « Avis et recommandations ». Vos données ne sont utilisées que pour cet affichage ; vous pouvez demander leur suppression à tout moment à Patrick, par e-mail.</p>
 <p id="err" style="color:#e5534b;font-weight:600;margin:0 0 8px;display:none"></p>
-<div style="display:flex;gap:8px;justify-content:flex-end"><button class="btn" id="go">Envoyer</button></div>
+<div style="display:flex;gap:8px;justify-content:flex-end"><button class="btn o" id="bk2" type="button">Retour à l’accueil</button><button class="btn" id="go">Envoyer</button></div>
 </div>
 </div></div>
 
@@ -176,7 +176,7 @@ function alert(m){var e=$("err");e.textContent=m;e.style.display="";clearTimeout
 function toast(m){var t=document.createElement("div");t.textContent=m;t.style.cssText="position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--ac);color:#fff;padding:12px 18px;border-radius:12px;z-index:60;font-weight:600;max-width:90vw";document.body.appendChild(t);setTimeout(function(){t.remove()},4000)}
 var acc=null,FBCFG=null;
 function show(id){["s0","s1","s2"].forEach(function(i){$(i).style.display=i===id?"":"none"});$("pt").textContent={s0:"Bienvenue",s1:"Vous êtes ?",s2:"Notez Patrick"}[id];$("err").style.display="none"}
-function quit(){var r=document.referrer;if(r&&r.indexOf(location.host)<0){history.back();setTimeout(function(){location.replace("https://www.linkedin.com/")},700);return}try{window.close()}catch(e){}setTimeout(function(){location.replace("https://www.linkedin.com/")},300)}
+function quit(){location.href="https://www.google.fr/"}
 function share(){var u="https://pgoncalves-it.github.io/CV/",t="CV de Patrick Gonçalves Cardoso, technicien IT";if(navigator.share){navigator.share({title:t,url:u}).catch(function(){})}else{try{navigator.clipboard.writeText(u).then(function(){toast("Lien copié : collez-le dans un message.")})}catch(e){location.href="mailto:?subject="+encodeURIComponent(t)+"&body="+encodeURIComponent(u)}}}
 function loginGoogle(){if(!FBCFG||!window.firebase){toast("La connexion Google sera bientôt disponible. Continuez sans compte pour l’instant.");return}
  if(!firebase.apps.length)firebase.initializeApp(FBCFG);
@@ -191,7 +191,7 @@ function loginP(p){if(p==="linkedin"||p==="indeed"){toast("Cette connexion n’e
   return firebase.auth().signInWithPopup(pr)}).then(function(r){acc="compte";window.__u=r.user;$("nm").value=r.user.displayName||"";show("s2");loadAvis()}).catch(function(e){toast(e&&e.code==="auth/operation-not-allowed"?"Ce mode de connexion n’est pas encore activé.":"Connexion annulée.")})}
 $("gg").onclick=function(){var p=$("prov");p.style.display=p.style.display==="none"?"":"none"};
 [].forEach.call(document.querySelectorAll(".pv"),function(b){b.onclick=function(){loginP(b.dataset.p)}});
-$("bk0").onclick=function(){show("s1")};
+$("bk0").onclick=function(){show("s1")};$("bk2").onclick=function(){show("s1")};$("ac").onclick=function(){close();scrollTo({top:0,behavior:"smooth"})};
 function tok(){return firebase.auth().currentUser.getIdToken()}
 function notif(){try{fetch("https://formsubmit.co/ajax/"+MAIL,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({_subject:"Un avis a été ajouté sur votre CV",message:"Un nouvel avis vient d’être ajouté sur votre CV en ligne."})}).catch(function(){})}catch(e){}}
 function postAvis(rv){return postAvis0(rv).then(function(x){notif();return x})}
@@ -204,8 +204,8 @@ $("list").onclick=function(e){var b=e.target,k=b.dataset&&b.dataset.k;if(!k)retu
 if(FBCFG)sdk().then(function(){if(!firebase.apps.length)firebase.initializeApp(FBCFG);firebase.auth().onAuthStateChanged(function(u){if(u){window.__u=u;acc="compte";$("nm").value=u.displayName||"";if($("ov").classList.contains("on")&&$("s0").style.display==="")show("s2");loadAvis()}})});
 function loadAvis(){dbf("/avis.json").then(function(r){return r.json()}).then(function(d){REVIEWS=d?Object.keys(d).map(function(k){var v=d[k];if(v&&typeof v==="object")v._k=k;return v}).filter(function(x){return x&&x.notes&&x.notes.length===4}).sort(function(a,b){return (b.t||0)-(a.t||0)}):[];render()}).catch(function(){})}
 function cnt(k){if(!DB)return;dbf("/"+k+".json?shallow=true").then(function(r){return r.json()}).then(function(d){var n=d?Object.keys(d).length:0;({recruteurs:["nr","cr"],personnes:["np","cp"],deja:["nd","cd"]})[k].forEach(function(i){$(i).textContent=n})}).catch(function(){})}
-function hit(k){var f=k==="deja"?"hitd":"hit",done=false;try{done=localStorage.getItem(f)==="1";localStorage.setItem(f,"1")}catch(e){}
-  if(DB&&!done)dbf("/"+k+".json",{method:"POST",body:JSON.stringify({t:{".sv":"timestamp"}})}).then(function(){cnt(k)}).catch(function(){})}
+function hit(k){var f="h_"+k,done=false;try{done=sessionStorage.getItem(f)==="1"}catch(e){}
+  if(DB&&!done)dbf("/"+k+".json",{method:"POST",body:JSON.stringify({t:{".sv":"timestamp"}})}).then(function(){try{sessionStorage.setItem(f,"1")}catch(e){}cnt(k)}).catch(function(){})}
 var ans=false;try{ans=localStorage.getItem("hit")==="1"}catch(e){}
 open();
 try{if(localStorage.getItem("rec")==="1")showCt()}catch(e){}
