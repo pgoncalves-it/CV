@@ -27,9 +27,9 @@ d.text((100,285),"Technicien IT confirmé",font=f(R,36),fill=soft)
 # stars: grey base + gold clipped by average
 sf=f(B,70); x0,y0=100,350
 txt="★★★★★★"
-d.text((x0,y0),txt,font=sf,fill=grey)
+d.text((x0,y0),txt,font=sf,fill=gold)
 l,t,r,b=d.textbbox((x0,y0),txt,font=sf)
-frac=max(0,min(1,avg/6))
+frac=1
 if frac>0:
     layer=Image.new("RGBA",(W,H),(0,0,0,0)); ld=ImageDraw.Draw(layer)
     ld.text((x0,y0),txt,font=sf,fill=gold+(255,))
