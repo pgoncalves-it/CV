@@ -95,7 +95,7 @@ img,a{-webkit-user-drag:none}
 <div id="side" style="position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;align-items:flex-end;gap:8px">
 <button id="shr2" type="button" class="btn" style="display:block;border-radius:12px 0 0 12px;padding:12px 10px;box-shadow:0 4px 16px rgba(0,0,0,.35);font-size:.85rem;font-weight:600">↗ Partager</button>
 <button id="qt2" type="button" class="btn" style="border-radius:12px 0 0 12px;background:#5b6676;padding:12px 10px;box-shadow:0 4px 16px rgba(0,0,0,.35);font-size:.85rem;font-weight:600">✕ Quitter</button>
-<button id="hm" type="button" class="btn" style="border-radius:12px 0 0 12px;background:#2f6fb3;padding:12px 10px;box-shadow:0 4px 16px rgba(0,0,0,.35);font-size:.85rem;font-weight:600">⌂ Accueil</button>
+<button id="hm" type="button" class="btn" style="border-radius:12px 0 0 12px;background:#f28c1c;color:#1b2430;padding:12px 10px;box-shadow:0 4px 16px rgba(0,0,0,.35);font-size:.85rem;font-weight:600">⌂ Accueil</button>
 </div>
 <a id="bub" href="#" aria-label="Envoyer un e-mail à Patrick"></a>
 <div class="ov" id="ov" role="dialog" aria-modal="true" aria-labelledby="pt"><div class="pop">
@@ -194,7 +194,7 @@ function loginP(p){if(p==="linkedin"||p==="indeed"){toast("Cette connexion n’e
   return firebase.auth().signInWithPopup(pr)}).then(function(r){acc="compte";window.__u=r.user;$("nm").value=r.user.displayName||"";show("s2");loadAvis()}).catch(function(e){toast(e&&e.code==="auth/operation-not-allowed"?"Ce mode de connexion n’est pas encore activé.":"Connexion annulée.")})}
 $("gg").onclick=function(){var p=$("prov");p.style.display=p.style.display==="none"?"":"none"};
 [].forEach.call(document.querySelectorAll(".pv"),function(b){b.onclick=function(){loginP(b.dataset.p)}});
-$("hm").onclick=function(){if($("ov").classList.contains("on"))show("s1");else scrollTo({top:0,behavior:"smooth"})};
+$("hm").onclick=function(){close();scrollTo({top:0,behavior:"smooth"})};
 function tok(){return firebase.auth().currentUser.getIdToken()}
 function notif(){try{fetch("https://formsubmit.co/ajax/"+MAIL,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({_subject:"Un avis a été ajouté sur votre CV",message:"Un nouvel avis vient d’être ajouté sur votre CV en ligne."})}).catch(function(){})}catch(e){}}
 function postAvis(rv){return postAvis0(rv).then(function(x){notif();return x})}
