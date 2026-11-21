@@ -43,6 +43,8 @@ input,textarea,select{width:100%;font:inherit;padding:9px;border-radius:8px;bord
 body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 input,textarea{-webkit-user-select:text;user-select:text}
 img,a{-webkit-user-drag:none}
+#side{z-index:60!important}
+@media(max-width:759px){.ov{padding-right:100px}}
 </style>
 </head>
 <body>
@@ -93,12 +95,13 @@ img,a{-webkit-user-drag:none}
 <div id="side" style="position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;align-items:flex-end;gap:8px">
 <button id="shr2" type="button" class="btn" style="display:block;border-radius:12px 0 0 12px;padding:12px 10px;box-shadow:0 4px 16px rgba(0,0,0,.35);font-size:.85rem;font-weight:600">↗ Partager</button>
 <button id="qt2" type="button" class="btn" style="border-radius:12px 0 0 12px;background:#5b6676;padding:12px 10px;box-shadow:0 4px 16px rgba(0,0,0,.35);font-size:.85rem;font-weight:600">✕ Quitter</button>
+<button id="hm" type="button" class="btn" style="border-radius:12px 0 0 12px;background:#2f6fb3;padding:12px 10px;box-shadow:0 4px 16px rgba(0,0,0,.35);font-size:.85rem;font-weight:600">⌂ Accueil</button>
 </div>
 <a id="bub" href="#" aria-label="Envoyer un e-mail à Patrick"></a>
 <div class="ov" id="ov" role="dialog" aria-modal="true" aria-labelledby="pt"><div class="pop">
 <h2 id="pt" style="text-transform:none;font-size:1.2rem">Vous êtes ?</h2>
-<div id="s0"><p class="sub">Pour déposer un avis, connectez-vous. Cela confirme votre identité et vous permettra de modifier ou supprimer votre avis plus tard.</p><button class="btn" id="gg" type="button" style="display:none;width:100%;margin:8px 0">Se connecter</button><div id="prov" style="margin:8px 0 6px"><button class="btn o pv" type="button" data-p="google.com" style="width:100%;margin-bottom:6px">Google</button><button class="btn o pv" type="button" data-p="microsoft.com" style="width:100%;margin-bottom:6px">Microsoft</button><button class="btn o pv" type="button" data-p="yahoo.com" style="width:100%;margin-bottom:6px">Yahoo</button><button class="btn o pv" type="button" data-p="linkedin" style="width:100%;margin-bottom:6px">LinkedIn (bientôt)</button><button class="btn o pv" type="button" data-p="indeed" style="width:100%">Indeed (bientôt)</button></div><button class="btn o" id="go0" type="button" style="display:none;width:100%">Continuer sans compte</button><button class="btn o" id="bk0" type="button" style="border:0;width:100%;margin-top:6px">Retour à l’accueil</button><button class="btn o" id="qt0" type="button" style="border:0;width:100%;margin-top:6px">Quitter</button><p class="small">Pour toute question sur un avis, contactez directement Patrick par e-mail.</p></div>
-<div id="s1" style="display:none"><p style="margin:0 0 10px;padding:10px 12px;border:1px solid var(--bd);border-left:4px solid var(--ac);border-radius:8px;font-size:.9rem">Cet espace est un lieu professionnel : seuls les avis professionnels sont admis.</p><button class="btn" id="rec" style="width:100%;margin:8px 0">Recruteur · <span id="cr">0</span></button><button class="btn o" id="per" style="width:100%">Je connais Patrick professionnellement · <span id="cp">0</span></button><button class="btn o" id="dej" style="width:100%;margin-top:8px">Je suis déjà venu(e) · <span id="cd">0</span></button><button class="btn o" id="ac" type="button" style="width:100%;margin-top:8px">Retour à l’accueil</button><button class="btn o" id="qt" type="button" style="border:0;width:100%;margin-top:4px">Quitter</button></div>
+<div id="s0"><p class="sub">Pour déposer un avis, connectez-vous. Cela confirme votre identité et vous permettra de modifier ou supprimer votre avis plus tard.</p><button class="btn" id="gg" type="button" style="display:none;width:100%;margin:8px 0">Se connecter</button><div id="prov" style="margin:8px 0 6px"><button class="btn o pv" type="button" data-p="google.com" style="width:100%;margin-bottom:6px">Google</button><button class="btn o pv" type="button" data-p="microsoft.com" style="width:100%;margin-bottom:6px">Microsoft</button><button class="btn o pv" type="button" data-p="yahoo.com" style="width:100%;margin-bottom:6px">Yahoo</button><button class="btn o pv" type="button" data-p="linkedin" style="width:100%;margin-bottom:6px">LinkedIn (bientôt)</button><button class="btn o pv" type="button" data-p="indeed" style="width:100%">Indeed (bientôt)</button></div><button class="btn o" id="go0" type="button" style="display:none;width:100%">Continuer sans compte</button><p class="small">Pour toute question sur un avis, contactez directement Patrick par e-mail.</p></div>
+<div id="s1" style="display:none"><p style="margin:0 0 10px;padding:10px 12px;border:1px solid var(--bd);border-left:4px solid var(--ac);border-radius:8px;font-size:.9rem">Cet espace est un lieu professionnel : seuls les avis professionnels sont admis.</p><button class="btn" id="rec" style="width:100%;margin:8px 0">Recruteur · <span id="cr">0</span></button><button class="btn o" id="per" style="width:100%">Je connais Patrick professionnellement · <span id="cp">0</span></button><button class="btn o" id="dej" style="width:100%;margin-top:8px">Je suis déjà venu(e) · <span id="cd">0</span></button></div>
 <div id="s2" style="display:none"><h3 style="margin:0 0 4px">Notez Patrick</h3><p class="sub">Donnez votre avis sur son travail.</p>
 <div id="fields"></div>
 <label class="small">Votre nom</label><input id="nm" autocomplete="name">
@@ -106,7 +109,7 @@ img,a{-webkit-user-drag:none}
 <label class="small">Votre commentaire (5 caractères minimum)</label><textarea id="cm" rows="4"></textarea>
 <p class="small">Votre avis sera publié en bas de cette page, dans la section « Avis et recommandations ». Vos données ne sont utilisées que pour cet affichage ; vous pouvez demander leur suppression à tout moment à Patrick, par e-mail.</p>
 <p id="err" style="color:#e5534b;font-weight:600;margin:0 0 8px;display:none"></p>
-<div style="display:flex;gap:8px;justify-content:flex-end"><button class="btn o" id="bk2" type="button">Retour à l’accueil</button><button class="btn" id="go">Envoyer</button></div>
+<div style="display:flex;gap:8px;justify-content:flex-end"><button class="btn" id="go">Envoyer</button></div>
 </div>
 </div></div>
 
@@ -182,7 +185,7 @@ function loginGoogle(){if(!FBCFG||!window.firebase){toast("La connexion Google s
  if(!firebase.apps.length)firebase.initializeApp(FBCFG);
  firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(function(r){acc="google";$("nm").value=r.user.displayName||"";show("s1")}).catch(function(){toast("Connexion annulée.")})}
 $("go0").onclick=function(){acc="anon";show("s1")};
-$("qt").onclick=quit;$("qt0").onclick=quit;$("qt2").onclick=quit;$("shr").onclick=share;$("shr2").onclick=share;function ld(u){return new Promise(function(ok,ko){var e=document.createElement("script");e.src=u;e.onload=ok;e.onerror=ko;document.head.appendChild(e)})}
+$("qt2").onclick=quit;$("shr").onclick=share;$("shr2").onclick=share;function ld(u){return new Promise(function(ok,ko){var e=document.createElement("script");e.src=u;e.onload=ok;e.onerror=ko;document.head.appendChild(e)})}
 function sdk(){if(window.firebase&&firebase.auth)return Promise.resolve();var b="https://www.gstatic.com/firebasejs/10.12.2/";return ld(b+"firebase-app-compat.js").then(function(){return ld(b+"firebase-auth-compat.js")})}
 function loginP(p){if(p==="linkedin"||p==="indeed"){toast("Cette connexion n’est pas disponible pour le moment.");return}
  if(!FBCFG){toast("La connexion sera bientôt disponible. Continuez sans compte pour l’instant.");return}
@@ -191,7 +194,7 @@ function loginP(p){if(p==="linkedin"||p==="indeed"){toast("Cette connexion n’e
   return firebase.auth().signInWithPopup(pr)}).then(function(r){acc="compte";window.__u=r.user;$("nm").value=r.user.displayName||"";show("s2");loadAvis()}).catch(function(e){toast(e&&e.code==="auth/operation-not-allowed"?"Ce mode de connexion n’est pas encore activé.":"Connexion annulée.")})}
 $("gg").onclick=function(){var p=$("prov");p.style.display=p.style.display==="none"?"":"none"};
 [].forEach.call(document.querySelectorAll(".pv"),function(b){b.onclick=function(){loginP(b.dataset.p)}});
-$("bk0").onclick=function(){show("s1")};$("bk2").onclick=function(){show("s1")};$("ac").onclick=function(){close();scrollTo({top:0,behavior:"smooth"})};
+$("hm").onclick=function(){if($("ov").classList.contains("on"))show("s1");else scrollTo({top:0,behavior:"smooth"})};
 function tok(){return firebase.auth().currentUser.getIdToken()}
 function notif(){try{fetch("https://formsubmit.co/ajax/"+MAIL,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({_subject:"Un avis a été ajouté sur votre CV",message:"Un nouvel avis vient d’être ajouté sur votre CV en ligne."})}).catch(function(){})}catch(e){}}
 function postAvis(rv){return postAvis0(rv).then(function(x){notif();return x})}
