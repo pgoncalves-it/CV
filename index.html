@@ -194,7 +194,7 @@ function loginP(p){if(p==="linkedin"||p==="indeed"){toast("Cette connexion n’e
   return firebase.auth().signInWithPopup(pr)}).then(function(r){acc="compte";window.__u=r.user;$("nm").value=r.user.displayName||"";show("s2");loadAvis()}).catch(function(e){toast(e&&e.code==="auth/operation-not-allowed"?"Ce mode de connexion n’est pas encore activé.":"Connexion annulée.")})}
 $("gg").onclick=function(){var p=$("prov");p.style.display=p.style.display==="none"?"":"none"};
 [].forEach.call(document.querySelectorAll(".pv"),function(b){b.onclick=function(){loginP(b.dataset.p)}});
-$("hm").onclick=function(){close();scrollTo({top:0,behavior:"smooth"})};
+$("hm").onclick=function(){scrollTo({top:0});open()};
 function tok(){return firebase.auth().currentUser.getIdToken()}
 function notif(){try{fetch("https://formsubmit.co/ajax/"+MAIL,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({_subject:"Un avis a été ajouté sur votre CV",message:"Un nouvel avis vient d’être ajouté sur votre CV en ligne."})}).catch(function(){})}catch(e){}}
 function postAvis(rv){return postAvis0(rv).then(function(x){notif();return x})}
