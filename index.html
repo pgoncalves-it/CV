@@ -178,7 +178,7 @@ var DB=1;
 function alert(m){var e=$("err");e.textContent=m;e.style.display="";clearTimeout(window.__et);window.__et=setTimeout(function(){e.style.display="none"},6000)}
 function toast(m){var t=document.createElement("div");t.textContent=m;t.style.cssText="position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--ac);color:#fff;padding:12px 18px;border-radius:12px;z-index:60;font-weight:600;max-width:90vw";document.body.appendChild(t);setTimeout(function(){t.remove()},4000)}
 var acc=null,FBCFG=null;
-function show(id){["s0","s1","s2"].forEach(function(i){$(i).style.display=i===id?"":"none"});$("pt").textContent={s0:"Bienvenue",s1:"Vous êtes ?",s2:"Notez Patrick"}[id];$("side").style.display=id==="s1"?"none":"flex";$("err").style.display="none"}
+function show(id){["s0","s1","s2"].forEach(function(i){$(i).style.display=i===id?"":"none"});$("pt").textContent={s0:"Bienvenue",s1:"Vous êtes ?",s2:"Notez Patrick"}[id];$("side").style.display="none";$("err").style.display="none"}
 function quit(){location.href="https://www.google.fr/"}
 function share(){var u="https://pgoncalves-it.github.io/CV/",t="CV de Patrick Gonçalves Cardoso, technicien IT";if(navigator.share){navigator.share({title:t,url:u}).catch(function(){})}else{try{navigator.clipboard.writeText(u).then(function(){toast("Lien copié : collez-le dans un message.")})}catch(e){location.href="mailto:?subject="+encodeURIComponent(t)+"&body="+encodeURIComponent(u)}}}
 function loginGoogle(){if(!FBCFG||!window.firebase){toast("La connexion Google sera bientôt disponible. Continuez sans compte pour l’instant.");return}
