@@ -139,7 +139,7 @@ function build(){
   $("fields").onclick=function(e){var t=e.target;if(!t.dataset.k)return;var i=+t.dataset.i,k=+t.dataset.k;vals[i]=k;
     [].forEach.call($("p"+i).children,function(b,j){b.classList.toggle("on",j<k)})};
 }
-function open(){show("s1");$("ov").classList.add("on")}function close(){$("ov").classList.remove("on")}
+function open(){show("s1");$("ov").classList.add("on")}function close(){$("ov").classList.remove("on");$("side").style.display="flex"}
 $("open").onclick=open;$("dej").onclick=function(){hit("deja");close()};
 $("rec").onclick=function(){hit("recruteurs");try{localStorage.setItem("rec","1")}catch(e){}showCt();close();$("avis").scrollIntoView({behavior:"smooth"})};
 $("per").onclick=function(){hit("personnes");if(acc==="compte")show("s2");else if(!FBCFG){acc="anon";show("s2")}else show("s0")};
@@ -178,7 +178,7 @@ var DB=1;
 function alert(m){var e=$("err");e.textContent=m;e.style.display="";clearTimeout(window.__et);window.__et=setTimeout(function(){e.style.display="none"},6000)}
 function toast(m){var t=document.createElement("div");t.textContent=m;t.style.cssText="position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--ac);color:#fff;padding:12px 18px;border-radius:12px;z-index:60;font-weight:600;max-width:90vw";document.body.appendChild(t);setTimeout(function(){t.remove()},4000)}
 var acc=null,FBCFG=null;
-function show(id){["s0","s1","s2"].forEach(function(i){$(i).style.display=i===id?"":"none"});$("pt").textContent={s0:"Bienvenue",s1:"Vous êtes ?",s2:"Notez Patrick"}[id];$("err").style.display="none"}
+function show(id){["s0","s1","s2"].forEach(function(i){$(i).style.display=i===id?"":"none"});$("pt").textContent={s0:"Bienvenue",s1:"Vous êtes ?",s2:"Notez Patrick"}[id];$("side").style.display=id==="s1"?"none":"flex";$("err").style.display="none"}
 function quit(){location.href="https://www.google.fr/"}
 function share(){var u="https://pgoncalves-it.github.io/CV/",t="CV de Patrick Gonçalves Cardoso, technicien IT";if(navigator.share){navigator.share({title:t,url:u}).catch(function(){})}else{try{navigator.clipboard.writeText(u).then(function(){toast("Lien copié : collez-le dans un message.")})}catch(e){location.href="mailto:?subject="+encodeURIComponent(t)+"&body="+encodeURIComponent(u)}}}
 function loginGoogle(){if(!FBCFG||!window.firebase){toast("La connexion Google sera bientôt disponible. Continuez sans compte pour l’instant.");return}
@@ -196,7 +196,10 @@ $("gg").onclick=function(){var p=$("prov");p.style.display=p.style.display==="no
 [].forEach.call(document.querySelectorAll(".pv"),function(b){b.onclick=function(){loginP(b.dataset.p)}});
 $("hm").onclick=function(){scrollTo({top:0});open()};
 function tok(){return firebase.auth().currentUser.getIdToken()}
-function notif(){try{fetch("https://formsubmit.co/ajax/"+MAIL,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({_subject:"Un avis a été ajouté sur votre CV",message:"Un nouvel avis vient d’être ajouté sur votre CV en ligne."})}).catch(function(){})}catch(e){}}
+var W3KEY="";
+function notif(sj,ms){sj=sj||"Un avis a été ajouté sur votre CV";ms=ms||"Un nouvel avis vient d’être ajouté sur votre CV en ligne.";
+ try{var u,b;if(W3KEY){u="https://api.web3forms.com/submit";b={access_key:W3KEY,subject:sj,message:ms,from_name:"CV en ligne"}}else{u="https://formsubmit.co/ajax/"+MAIL;b={_subject:sj,message:ms,_captcha:"false"}}
+ fetch(u,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(b)}).catch(function(){})}catch(e){}}
 function postAvis(rv){return postAvis0(rv).then(function(x){notif();return x})}
 function postAvis0(rv){var o={method:"POST",body:JSON.stringify(rv)};if(acc==="compte"&&window.__u){rv.uid=window.__u.uid;o.body=JSON.stringify(rv);return tok().then(function(t){return dbf("/avis.json?auth="+t,o)})}return dbf("/avis.json",o)}
 function own(r){return(window.__u&&r.uid&&r.uid===window.__u.uid&&r._k)?'<p style="margin:6px 0 0"><button class="btn o" type="button" data-k="'+r._k+'" data-a="e">Modifier mon commentaire</button> <button class="btn o" type="button" data-k="'+r._k+'" data-a="d">Supprimer mon avis</button></p>':""}
@@ -208,7 +211,7 @@ if(FBCFG)sdk().then(function(){if(!firebase.apps.length)firebase.initializeApp(F
 function loadAvis(){dbf("/avis.json").then(function(r){return r.json()}).then(function(d){REVIEWS=d?Object.keys(d).map(function(k){var v=d[k];if(v&&typeof v==="object")v._k=k;return v}).filter(function(x){return x&&x.notes&&x.notes.length===4}).sort(function(a,b){return (b.t||0)-(a.t||0)}):[];render()}).catch(function(){})}
 function cnt(k){if(!DB)return;dbf("/"+k+".json?shallow=true").then(function(r){return r.json()}).then(function(d){var n=d?Object.keys(d).length:0;({recruteurs:["nr","cr"],personnes:["np","cp"],deja:["nd","cd"]})[k].forEach(function(i){$(i).textContent=n})}).catch(function(){})}
 function hit(k){var f="h_"+k,done=false;try{done=sessionStorage.getItem(f)==="1"}catch(e){}
-  if(DB&&!done)dbf("/"+k+".json",{method:"POST",body:JSON.stringify({t:{".sv":"timestamp"}})}).then(function(){try{sessionStorage.setItem(f,"1")}catch(e){}cnt(k)}).catch(function(){})}
+  if(DB&&!done)dbf("/"+k+".json",{method:"POST",body:JSON.stringify({t:{".sv":"timestamp"}})}).then(function(){try{sessionStorage.setItem(f,"1")}catch(e){}cnt(k);if(k==="recruteurs")notif("Un recruteur a consulté votre CV","Un visiteur a cliqué sur « Recruteur » sur votre CV en ligne.")}).catch(function(){})}
 var ans=false;try{ans=localStorage.getItem("hit")==="1"}catch(e){}
 open();
 try{if(localStorage.getItem("rec")==="1")showCt()}catch(e){}
