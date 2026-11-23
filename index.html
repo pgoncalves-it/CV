@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<!-- version 2026-11-23-d -->
+<!-- version 2026-11-23-e -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Patrick Gonçalves Cardoso – Technicien IT confirmé</title>
@@ -177,7 +177,8 @@ function dbf(p,o,i){i=i||0;if(i>=DBS.length)return Promise.reject();return fetch
 var DB=1;
 function alert(m){var e=$("err");e.textContent=m;e.style.display="";clearTimeout(window.__et);window.__et=setTimeout(function(){e.style.display="none"},6000)}
 function toast(m){var t=document.createElement("div");t.textContent=m;t.style.cssText="position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--ac);color:#fff;padding:12px 18px;border-radius:12px;z-index:60;font-weight:600;max-width:90vw";document.body.appendChild(t);setTimeout(function(){t.remove()},4000)}
-var acc=null,FBCFG=null;
+var acc=null,FBCFG=null,ADM=false;
+try{if(location.hash==="#admin-x7k2q9")localStorage.setItem("adm","1");if(location.hash==="#admin-off")localStorage.removeItem("adm");ADM=localStorage.getItem("adm")==="1"}catch(e){}
 function show(id){["s0","s1","s2"].forEach(function(i){$(i).style.display=i===id?"":"none"});$("pt").textContent={s0:"Bienvenue",s1:"Vous êtes ?",s2:"Notez Patrick"}[id];$("side").style.display="none";$("err").style.display="none"}
 function quit(){location.href="https://www.google.fr/"}
 function share(){var u="https://pgoncalves-it.github.io/CV/",t="CV de Patrick Gonçalves Cardoso, technicien IT";if(navigator.share){navigator.share({title:t,url:u}).catch(function(){})}else{try{navigator.clipboard.writeText(u).then(function(){toast("Lien copié : collez-le dans un message.")})}catch(e){location.href="mailto:?subject="+encodeURIComponent(t)+"&body="+encodeURIComponent(u)}}}
@@ -197,7 +198,7 @@ $("gg").onclick=function(){var p=$("prov");p.style.display=p.style.display==="no
 $("hm").onclick=function(){scrollTo({top:0});open()};
 function tok(){return firebase.auth().currentUser.getIdToken()}
 var W3KEY="";
-function notif(sj,ms){sj=sj||"Un avis a été ajouté sur votre CV";ms=ms||"Un nouvel avis vient d’être ajouté sur votre CV en ligne.";
+function notif(sj,ms){if(ADM)return;sj=sj||"Un avis a été ajouté sur votre CV";ms=ms||"Un nouvel avis vient d’être ajouté sur votre CV en ligne.";
  try{var u,b;if(W3KEY){u="https://api.web3forms.com/submit";b={access_key:W3KEY,subject:sj,message:ms,from_name:"CV en ligne"}}else{u="https://formsubmit.co/ajax/"+MAIL;b={_subject:sj,message:ms,_captcha:"false"}}
  fetch(u,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(b)}).catch(function(){})}catch(e){}}
 function postAvis(rv){return postAvis0(rv).then(function(x){notif();return x})}
@@ -210,10 +211,11 @@ $("list").onclick=function(e){var b=e.target,k=b.dataset&&b.dataset.k;if(!k)retu
 if(FBCFG)sdk().then(function(){if(!firebase.apps.length)firebase.initializeApp(FBCFG);firebase.auth().onAuthStateChanged(function(u){if(u){window.__u=u;acc="compte";$("nm").value=u.displayName||"";if($("ov").classList.contains("on")&&$("s0").style.display==="")show("s2");loadAvis()}})});
 function loadAvis(){dbf("/avis.json").then(function(r){return r.json()}).then(function(d){REVIEWS=d?Object.keys(d).map(function(k){var v=d[k];if(v&&typeof v==="object")v._k=k;return v}).filter(function(x){return x&&x.notes&&x.notes.length===4}).sort(function(a,b){return (b.t||0)-(a.t||0)}):[];render()}).catch(function(){})}
 function cnt(k){if(!DB)return;dbf("/"+k+".json?shallow=true").then(function(r){return r.json()}).then(function(d){var n=d?Object.keys(d).length:0;({recruteurs:["nr","cr"],personnes:["np","cp"],deja:["nd","cd"]})[k].forEach(function(i){$(i).textContent=n})}).catch(function(){})}
-function hit(k){var f="h_"+k,done=false;try{done=sessionStorage.getItem(f)==="1"}catch(e){}
+function hit(k){if(ADM)return;var f="h_"+k,done=false;try{done=sessionStorage.getItem(f)==="1"}catch(e){}
   if(DB&&!done)dbf("/"+k+".json",{method:"POST",body:JSON.stringify({t:{".sv":"timestamp"}})}).then(function(){try{sessionStorage.setItem(f,"1")}catch(e){}cnt(k);if(k==="recruteurs")notif("Un recruteur a consulté votre CV","Un visiteur a cliqué sur « Recruteur » sur votre CV en ligne.")}).catch(function(){})}
 var ans=false;try{ans=localStorage.getItem("hit")==="1"}catch(e){}
-open();
+function adminMode(){var b=document.createElement("div");b.textContent="Mode admin : vos visites ne sont pas comptées";b.style.cssText="position:fixed;top:0;left:0;right:0;z-index:80;background:#f28c1c;color:#1b2430;text-align:center;font-weight:700;font-size:.85rem;padding:6px;padding-top:calc(6px + env(safe-area-inset-top,0px))";document.body.appendChild(b);$("side").style.display="flex";setTimeout(function(){$("avis").scrollIntoView({behavior:"smooth"})},900)}
+if(ADM)adminMode();else open();
 try{if(localStorage.getItem("rec")==="1")showCt()}catch(e){}
 cnt("recruteurs");cnt("personnes");cnt("deja");loadAvis();
 
