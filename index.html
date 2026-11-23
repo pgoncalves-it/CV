@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<!-- version 2026-11-23-e -->
+<!-- version 2026-11-23-i -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Patrick Gonçalves Cardoso – Technicien IT confirmé</title>
@@ -33,7 +33,7 @@ a{color:var(--ac)}ul{margin:4px 0 8px;padding-left:20px}
 .g{display:grid;grid-template-columns:1fr 1fr;gap:0 24px}@media(max-width:600px){.g{grid-template-columns:1fr}}
 .crit{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:4px 0}
 .rev{border-top:1px solid var(--bd);padding:12px 0}.rev:first-child{border-top:0}
-.ov{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:16px;z-index:50}
+.ov{position:fixed;inset:0;background:var(--bg);display:none;align-items:center;justify-content:center;padding:16px;z-index:50}
 .ov.on{display:flex}
 .pop{background:var(--card);color:var(--tx);border-radius:16px;max-width:480px;width:100%;max-height:92vh;overflow:auto;padding:20px;border:1px solid var(--bd)}
 .pick{display:inline-flex;gap:2px}.pick button{background:none;border:0;font-size:1.6rem;cursor:pointer;color:var(--se);padding:0 1px;line-height:1}
@@ -45,6 +45,7 @@ body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 input,textarea{-webkit-user-select:text;user-select:text}
 img,a{-webkit-user-drag:none}
 #side{z-index:60!important}
+body.lock .w{visibility:hidden}
 </style>
 </head>
 <body>
@@ -139,7 +140,7 @@ function build(){
   $("fields").onclick=function(e){var t=e.target;if(!t.dataset.k)return;var i=+t.dataset.i,k=+t.dataset.k;vals[i]=k;
     [].forEach.call($("p"+i).children,function(b,j){b.classList.toggle("on",j<k)})};
 }
-function open(){show("s1");$("ov").classList.add("on")}function close(){$("ov").classList.remove("on");$("side").style.display="flex"}
+function open(){show("s1");$("ov").classList.add("on");document.body.classList.add("lock")}function close(){$("ov").classList.remove("on");document.body.classList.remove("lock");$("side").style.display="flex"}
 $("open").onclick=open;$("dej").onclick=function(){hit("deja");close()};
 $("rec").onclick=function(){hit("recruteurs");try{localStorage.setItem("rec","1")}catch(e){}showCt();close();$("avis").scrollIntoView({behavior:"smooth"})};
 $("per").onclick=function(){hit("personnes");if(acc==="compte")show("s2");else if(!FBCFG){acc="anon";show("s2")}else show("s0")};
@@ -151,7 +152,7 @@ $("go").onclick=function(){
   if($("cm").value.trim().length<5){alert("Votre commentaire doit contenir au moins 5 caractères.");return}
   var b="Profil : personne ayant croisé mon chemin\n"+"Nom : "+$("nm").value+"\nFonction/entreprise : "+$("rl").value+"\n\n"+C.map(function(c,i){return c+" : "+vals[i]+"/6"}).join("\n")+"\n\nCommentaire :\n"+$("cm").value;
   var rv={nom:$("nm").value.trim(),role:$("rl").value.trim(),date:new Date().toLocaleDateString("fr-FR"),notes:vals.slice(),commentaire:$("cm").value.trim(),t:Date.now(),compte:acc==="compte"?"Compte vérifié":"Sans compte"};
-  postAvis(rv).then(function(){loadAvis();toast("Merci ! Votre avis est publié.")}).catch(function(){toast("Désolé, l’envoi a échoué (code "+(window.__ls||"réseau")+"). Réessayez plus tard.")});
+  postAvis(rv).then(function(){loadAvis();toast("Merci pour votre avis","#d93025")}).catch(function(){toast("Désolé, l’envoi a échoué (code "+(window.__ls||"réseau")+"). Réessayez plus tard.")});
   close();
 };
 build();render();
@@ -176,7 +177,7 @@ var DBS=["https://cv-patrick-default-rtdb.europe-west1.firebasedatabase.app","ht
 function dbf(p,o,i){i=i||0;if(i>=DBS.length)return Promise.reject();return fetch(DBS[i]+p,o).then(function(r){if(!r.ok){if(i===0)window.__ls=r.status;throw 0}return r}).catch(function(){return dbf(p,o,i+1)})}
 var DB=1;
 function alert(m){var e=$("err");e.textContent=m;e.style.display="";clearTimeout(window.__et);window.__et=setTimeout(function(){e.style.display="none"},6000)}
-function toast(m){var t=document.createElement("div");t.textContent=m;t.style.cssText="position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--ac);color:#fff;padding:12px 18px;border-radius:12px;z-index:60;font-weight:600;max-width:90vw";document.body.appendChild(t);setTimeout(function(){t.remove()},4000)}
+function toast(m,c){var t=document.createElement("div");t.textContent=m;t.style.cssText="position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--ac);color:#fff;padding:12px 18px;border-radius:12px;z-index:60;font-weight:600;max-width:90vw";if(c)t.style.background=c;document.body.appendChild(t);setTimeout(function(){t.remove()},c?5000:4000)}
 var acc=null,FBCFG=null,ADM=false;
 try{if(location.hash==="#admin-x7k2q9")localStorage.setItem("adm","1");if(location.hash==="#admin-off")localStorage.removeItem("adm");ADM=localStorage.getItem("adm")==="1"}catch(e){}
 function show(id){["s0","s1","s2"].forEach(function(i){$(i).style.display=i===id?"":"none"});$("pt").textContent={s0:"Bienvenue",s1:"Vous êtes ?",s2:"Notez Patrick"}[id];$("side").style.display="none";$("err").style.display="none"}
@@ -201,7 +202,24 @@ var W3KEY="";
 function notif(sj,ms){if(ADM)return;sj=sj||"Un avis a été ajouté sur votre CV";ms=ms||"Un nouvel avis vient d’être ajouté sur votre CV en ligne.";
  try{var u,b;if(W3KEY){u="https://api.web3forms.com/submit";b={access_key:W3KEY,subject:sj,message:ms,from_name:"CV en ligne"}}else{u="https://formsubmit.co/ajax/"+MAIL;b={_subject:sj,message:ms,_captcha:"false"}}
  fetch(u,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(b)}).catch(function(){})}catch(e){}}
-function postAvis(rv){return postAvis0(rv).then(function(x){notif();return x})}
+function nb(x){return String(x.toFixed(1)).replace(".",",")}
+function cntN(k){return dbf("/"+k+".json?shallow=true").then(function(r){return r.json()}).then(function(x){return x?Object.keys(x).length:0})}
+function digest(){if(ADM)return;
+ dbf("/avis.json").then(function(r){return r.json()}).then(function(d){
+  var L=Object.keys(d||{}).map(function(k){return d[k]}).filter(function(x){return x&&x.notes&&x.notes.length===4}),n=L.length;
+  if(!n||n%10!==0)return;
+  var tot=0;L.forEach(function(r){tot+=(r.notes[0]+r.notes[1]+r.notes[2]+r.notes[3])/4});
+  L.sort(function(a,b){return(b.t||0)-(a.t||0)});
+  return Promise.all([cntN("recruteurs"),cntN("personnes"),cntN("deja")]).then(function(c){
+   var t="RÉSUMÉ À JOUR\n";
+   t+="Avis au total : "+n+"\nNote moyenne : "+nb(tot/n)+" / 6\n";
+   t+="Recruteurs : "+c[0]+"\nConnaissent Patrick professionnellement : "+c[1]+"\nDéjà venus : "+c[2]+"\n\n";
+   t+="LES 10 DERNIERS AVIS\n";
+   L.slice(0,10).forEach(function(r,i){var m=(r.notes[0]+r.notes[1]+r.notes[2]+r.notes[3])/4;
+    t+="\n"+(i+1)+") "+r.nom+" ("+(r.role||"fonction non indiquée")+"), "+(r.date||"")+(r.compte?" - "+r.compte:"")+"\n   Note : "+nb(m)+" / 6 (performances "+r.notes[0]+", compétences "+r.notes[1]+", professionnalisme "+r.notes[2]+", savoir-être "+r.notes[3]+")\n   Commentaire : "+r.commentaire+"\n"});
+   notif("Votre CV : "+n+" avis au total, voici les 10 derniers",t)})
+ }).catch(function(){})}
+function postAvis(rv){return postAvis0(rv).then(function(x){digest();return x})}
 function postAvis0(rv){var o={method:"POST",body:JSON.stringify(rv)};if(acc==="compte"&&window.__u){rv.uid=window.__u.uid;o.body=JSON.stringify(rv);return tok().then(function(t){return dbf("/avis.json?auth="+t,o)})}return dbf("/avis.json",o)}
 function own(r){return(window.__u&&r.uid&&r.uid===window.__u.uid&&r._k)?'<p style="margin:6px 0 0"><button class="btn o" type="button" data-k="'+r._k+'" data-a="e">Modifier mon commentaire</button> <button class="btn o" type="button" data-k="'+r._k+'" data-a="d">Supprimer mon avis</button></p>':""}
 $("list").onclick=function(e){var b=e.target,k=b.dataset&&b.dataset.k;if(!k)return;var r=REVIEWS.filter(function(x){return x._k===k})[0];
